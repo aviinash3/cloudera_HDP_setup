@@ -11,8 +11,8 @@
     state: latest
 - name: config mysql for Cloudera manager
   template:
-  src: templates/my.cnf
-  dest: /etc/my.cnf
+    src: templates/my.cnf
+    dest: /etc/my.cnf
 - name: Start MySQL Server and enable it
   service: 
     name: mysqld 
