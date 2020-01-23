@@ -1,5 +1,6 @@
 
-###note: place your java.rpm file inside files directiry.
+### note:
+place your java.rpm file inside files directiry.
 
 Role Name
 =========
