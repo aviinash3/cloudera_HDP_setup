@@ -1,0 +1,17 @@
+---
+- name: copy the rpm file to all hosts
+  copy:
+    src: files/jdk-8u241-linux-x64.rpm
+    dest: /home/admin
+
+- name: install oracle java
+  yum:
+    name: /home/admin/jdk-8u241-linux-x64.rpm
+    state: present
+
+- name: set java home path
+  template:
+    src: java_home.sh.j2
+    dest: /etc/profile.d/java_home.sh
+    mode: 0644
+

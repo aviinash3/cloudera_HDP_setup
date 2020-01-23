@@ -1,0 +1,4 @@
+---
+- name: install cloudera CDH 
+  command: yum install cloudera-manager-daemons cloudera-manager-agent cloudera-manager-server
+

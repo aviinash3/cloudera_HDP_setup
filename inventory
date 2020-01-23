@@ -1,0 +1,5 @@
+[all]
+centosabc0.com   ansible_user=admin
+
+#[master]
+#centosabc1.com   ansible_user=admin

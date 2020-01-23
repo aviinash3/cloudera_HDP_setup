@@ -1,0 +1,11 @@
+driftfile /var/lib/ntp/drift
+
+restrict 127.0.0.1 
+restrict -6 ::1
+
+server {{ ansible_default_ipv4.address }}
+
+includefile /etc/ntp/crypto/pw
+
+keys /etc/ntp/keys
+

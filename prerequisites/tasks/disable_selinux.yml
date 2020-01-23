@@ -1,0 +1,22 @@
+---
+
+- name: disable selinux
+  selinux:
+    state: disabled
+
+- name: reboot system
+  reboot:
+
+- name: stop firwall and disable
+  service:
+    name: firewalld
+    state: stopped
+    enabled: false
+
+- name: disable swapiness
+  command: "{{ item }}"
+  with_items:
+    - 'sysctl -w vm.swappiness=1'
+    - 'echo never > /sys/kernel/mm/transparent_hugepage/defrag'
+    - 'echo never > /sys/kernel/mm/transparent_hugepage/enabled'
+

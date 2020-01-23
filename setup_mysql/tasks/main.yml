@@ -1,0 +1,13 @@
+---
+- include_tasks: debian/setup_debian.yml
+  when: ansible_os_family == 'Debian'
+
+- include_tasks: redhat/setup_redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include_tasks: alpine/setup_alpine.yml
+  when: ansible_os_family == 'alpine'
+
+- include_tasks: ubuntu/setup_ubuntu.yml
+  when: ansible_os_family == 'ubuntu'
+

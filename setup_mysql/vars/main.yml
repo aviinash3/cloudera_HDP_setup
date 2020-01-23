@@ -1,0 +1,6 @@
+---
+# vars file for setup_mysql
+
+full_version: "{% if version == 5.5 %}5.5.61-linux-glibc2.12-x86_64{% elif version == 5.6 %}5.6.41-linux-glibc2.12-x86_64{% endif %}"
+checksum: "{% if version == 5.5 %}74934c3d7a4f82a640e948391da1c7a5{% elif version == 5.6 %}b0ac6851908b5c17b6a283d10709fcfd{% endif %}"
+

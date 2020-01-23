@@ -1,0 +1,12 @@
+CREATE DATABASE scm DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+GRANT ALL ON scm.* TO 'scm_user'@'%' IDENTIFIED BY 'scm_passwd';
+create database hive DEFAULT CHARACTER SET utf8;
+create database oozie DEFAULT CHARACTER SET utf8;
+create database rman DEFAULT CHARACTER SET utf8;
+create database hue DEFAULT CHARACTER SET utf8;
+GRANT ALL PRIVILEGES ON hive.* TO 'hive-user' IDENTIFIED BY 'hive_passwd';
+GRANT ALL PRIVILEGES ON oozie.* TO 'oozie_user' IDENTIFIED BY 'oozi_passwd';
+GRANT ALL PRIVILEGES ON rman.* TO 'rman_user' IDENTIFIED BY 'Rman_passwd';
+GRANT ALL PRIVILEGES ON hue.* TO 'hue_user' IDENTIFIED BY 'hue_passwd';
+flush privileges;
+show databases;

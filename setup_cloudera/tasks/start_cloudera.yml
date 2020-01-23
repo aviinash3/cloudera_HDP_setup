@@ -1,0 +1,7 @@
+---
+- name: start  cloudera SCM server
+  service:
+    name: cloudera-scm-server
+    state: started
+    enabled: true
+

@@ -1,0 +1,24 @@
+---
+- name: Remove Test database if it exist.
+  mysql_db:
+    name: test
+    state: absent
+
+- name: Remove All Anonymous User Accounts
+  mysql_user: name='' host_all=yes state=absent
+
+- name: copy database script
+  copy:
+    src: files/setup_db.sql
+    dest: /home/admin/
+
+- name: create databases and user for cloudera 
+  mysql_db:
+     name: all
+     state: import
+     target: /home/admin/setup_db.sql
+- name: remove script file
+  file:
+    name: setup_db.sql
+    path: /home/admin/
+    state: absent
