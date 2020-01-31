@@ -6,3 +6,6 @@
 - include_tasks: ntp_conf.yml 
 - include_tasks: install_java.yml 
 - include_tasks: disable_selinux.yml
+
+
+

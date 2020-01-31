@@ -1,2 +1,0 @@
-- name: reboot the all system 
-  reboot:

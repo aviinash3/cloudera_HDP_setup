@@ -1,2 +1,5 @@
 ---
 # defaults file for prerequisites
+
+#java_home: ""
+

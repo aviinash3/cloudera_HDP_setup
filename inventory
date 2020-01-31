@@ -1,5 +1,9 @@
 [all]
+<<<<<<< HEAD
 centosabc0.com   ansible_user=admin
 centosabc10.com   ansible_user=admin
 
 
+=======
+msql00.itversity.com   ansible_user=admin
+>>>>>>> 005d92f0c1d808b0d5945d689d40fd9a5a454f35
