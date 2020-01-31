@@ -1,24 +1,62 @@
 ---
+
+- name: setting up root password for mysql
+  mysql_user: 
+    name: root 
+    password: itversity
+    state: present
+#  ignore_errors: true
+- name: copy module
+  copy: 
+    src: files/flush.sql
+    dest: /home/admin/flush.sql 
+- name: restarting mysql
+  service:
+    name: mysqld
+    state: restarted
+
+- name: config mysql for Cloudera manager
+  template:
+    src: my.cnf
+    dest: /etc/my.cnf
+
 - name: Remove Test database if it exist.
   mysql_db:
+    login_user: root
+    login_password: itversity
     name: test
     state: absent
 
-- name: Remove All Anonymous User Accounts
-  mysql_user: name='' host_all=yes state=absent
-
-- name: copy database script
-  copy:
-    src: files/setup_db.sql
-    dest: /home/admin/
-
-- name: create databases and user for cloudera 
-  mysql_db:
-     name: all
-     state: import
-     target: /home/admin/setup_db.sql
-- name: remove script file
-  file:
-    name: setup_db.sql
-    path: /home/admin/
+- name: Remove All anonymous User acoounts
+  mysql_user:
+    name: ''
     state: absent
+    host_all: yes
+    login_user: root
+    login_password: itversity
+
+
+#- name: disallow root login remotelyi
+  
+ # command: 'mysql -u root -p itversity -ne "{{ item }}"'
+  #with_items: 
+   # - DELETE FROM mysql.user WHERE User='root' AND HOST NOT IN ('localhost','127.0.0.1','::1')
+  
+
+#- name: copy database script
+#  copy:
+#    src: files/setup_db.sql
+#    dest: /home/admin/
+#
+#- name: create databases and user for cloudera 
+#  mysql_db:
+#    name: all
+#    state: import
+#    target: /home/admin/setup_db.sql
+#    login_user: root
+#    login_password: itversity
+#- name: remove script file
+#  file:
+#    name: setup_db.sql
+#    path: /home/admin/
+#    state: absent

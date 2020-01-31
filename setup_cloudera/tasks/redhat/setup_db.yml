@@ -1,0 +1,12 @@
+---
+- name: Setup databases and users used by Hadoop Components.
+  mysql_db:
+    state: import
+    name: all
+    target: files/setup.sql
+
+
+- name: Setup Cloudera Manager Database 
+  command: sudo /opt/cloudera/cm/schema/scm_prepare_database.sh mysql -h  --scm-host hdp-master0.com scm scm_user -p redhat
+
+

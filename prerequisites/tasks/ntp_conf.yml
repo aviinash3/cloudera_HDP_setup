@@ -4,10 +4,6 @@
     name: ntp
     state: present
 
-- name: Set timezone to Asia/kolkata
-  timezone:
-    name: Asia/Kolkata
-
 - name: Configure ntp file
   template:
     src: ntp.conf.j2

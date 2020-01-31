@@ -1,16 +1,25 @@
 ---
-- name: download the tar file of  mysql_jdbc driver
-  unarchive:
-    src: https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.46.tar.gz
-    dest: /home/admin
-    remote_src: true
+#- name: download the tar file of  mysql_jdbc driver
+#  unarchive:
+#    src: https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.46.tar.gz
+#    dest: /home/admin
+#    remote_src: true
+#
+#- name: create a directory  name java
+#  file:
+#    dest: /usr/share/java
+#    state: directory
+#- name: copy the bin.jar file to /usr/share/java
+#  command: cp /home/admin/mysql-connector-java-5.1.46/mysql-connector-java-5.1.46-bin.jar /usr/share/java/mysql-connector-java.jar
+#- name: remove unused mysqlconnector directory
+#  file:
+#    path: /home/admin/mysql-connector-java-5.1.46
+#    state: absent
 
-- name: create a directory  name java
-  file:
-    dest: /usr/share/java
-    state: directory
-- name: copy the bin.jar file to /usr/share/java
-  command: cp /home/admin/mysql-connector-java-5.1.46/mysql-connector-java-5.1.46-bin.jar /usr/share/java/mysql-connector-java.jar
+- name: install mysql jdbc connector
+  yum: 
+    name: mysql-connector-java
+    state: latest
 
 
 - name: update package

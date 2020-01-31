@@ -1,0 +1,37 @@
+---
+#- name: copy the rpm file to all hosts
+#  copy:
+#    src: files/jdk-8u241-linux-x64.rpm
+#    dest: /home/admin
+
+#- name: install oracle java
+#  yum:
+#    name: /home/admin/jdk-8u241-linux-x64.rpm
+#   state: present
+
+#- name: set java home path
+#  template:
+#    src: java_home.sh.j2
+#    dest: /etc/profile.d/java_home.sh
+#    mode: 0644
+ 
+
+- name: install java-1.8.0-openjdk 
+  yum:
+    name: java-1.8.0-openjdk 
+    state: present
+
+- name: Get java_home path
+  shell: readlink -f /usr/bin/java | sed "s:/bin/java::"
+  register: java_home
+  ignore_errors: yes
+  changed_when: false
+  tags: set_java_home
+
+- name: Set JAVA_HOME
+  template:
+    src: java_home.sh.j2
+    dest: /etc/profile.d/java_home.sh
+    mode: 0644
+  when: java_home is defined and java_home
+  tags: set_java_home

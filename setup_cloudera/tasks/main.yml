@@ -3,5 +3,5 @@
 
 - include_tasks: setup_repo.yml
 - include_tasks: install.yml
-  #- include_tasks: setup_db.yml
+- include_tasks: setup_db.yml
 - include_tasks: start_cloudera.yml

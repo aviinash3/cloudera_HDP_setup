@@ -1,10 +1,25 @@
 ---
-- name: download the repo file from mysql-community official site
-  command: wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+#- name: download the repo file from mysql-community official site
+#  command: wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+#
+#- name: install the rpm
+#  command: sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm
+#
+- name: Add mysql-community.repo
+  template:
+    src: mysql-community.repo.j2
+    dest: /etc/yum.repos.d/mysql-community.repo
+    owner: root
+    group: root
+    mode: 0644
 
-- name: install the rpm
-  command: sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm
-
+- name: Add GPG mysql key
+  copy:
+    src: files/RPM-GPG-KEY-mysql
+    dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+    owner: root
+    group: root
+    mode: 0644
 - name: update packages
   command: sudo  yum update -y
 

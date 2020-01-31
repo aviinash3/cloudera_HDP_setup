@@ -1,9 +1,8 @@
 # tasks file for prerequisites
 ---
-#- include_tasks: update_hosts.yml
-#- include_tasks: disable_selinux.yml
-#- include_tasks: jdbc_driver.yml
-#- include_tasks: ntp_conf.yml 
-#- include_tasks: oracle_jdk.yml 
-
-
+- include_tasks: update_hosts.yml
+- include_tasks: jdbc_driver.yml
+- include_tasks: disable_chrony.yml
+- include_tasks: ntp_conf.yml 
+- include_tasks: install_java.yml 
+- include_tasks: disable_selinux.yml

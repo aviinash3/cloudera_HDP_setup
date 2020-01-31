@@ -1,14 +1,14 @@
 ---
 - hosts: all
-  vars_prompt:
-   - name: "selected_version"
-     prompt: "Which version Do you want to install? 5.5 or 5.6"
-     private: no
+  #  vars_prompt:
+  # - name: "selected_version"
+  #   prompt: "Which version Do you want to install? 5.5 or 5.6"
+  #   private: no
   roles:
     - prerequisites 
-    - {
-       role: setup_mysql,
-       version: "{{ selected_version }}",
-       }
-
+      # - {
+      # role: setup_mysql,
+      # version: "{{ selected_version }}",
+      # }
+      # - setup_cloudera
 

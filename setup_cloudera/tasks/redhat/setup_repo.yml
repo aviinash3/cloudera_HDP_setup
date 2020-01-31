@@ -1,0 +1,35 @@
+---
+#- name: setup cloudera repo
+#  yum_repository:
+#    name: Cloudera Manager 6.1.1
+#    description: cloudera-manager
+#    baseurl: https://archive.cloudera.com/cm6/6.1.1/redhat7/yum/
+#    gpgkey: https://archive.cloudera.com/cm6/6.1.1/redhat7/yum/RPM-GPG-KEY-cloudera
+#    gpgcheck: 1
+#    enabled: 1
+#- name: inport GPG keys for cloudera
+#  command: sudo rpm --import https://archive.cloudera.com/cm6/6.1.0/redhat7/yum/RPM-GPG-KEY-cloudera
+
+- name: Adding Cloudera Manager yum repository for CDH 5
+  yum_repository:
+    name: cloudera-manager
+    description: Cloudera Manager
+    baseurl: http://archive.cloudera.com/cm5/redhat/{{ ansible_distribution_major_version }}/x86_64/cm/5/
+    gpgkey: http://archive.cloudera.com/cm5/redhat/{{ ansible_distribution_major_version }}/x86_64/cm/RPM-GPG-KEY-cloudera
+    gpgcheck: true
+    enabled: true
+  when: ansible_os_family == "RedHat" and cm_version | int < 6
+
+- name: Add Cloudera Manager yum repository for CDH 6
+  yum_repository:
+    name: cloudera-manager
+    description: Cloudera Manager
+    baseurl: http://archive.cloudera.com/cm6/{{ cm_version }}/redhat{{ ansible_distribution_major_version }}/yum/
+    gpgkey: http://archive.cloudera.com/cm6/{{ cm_version }}/redhat{{ ansible_distribution_major_version }}/yum/RPM-GPG-KEY-cloudera
+    gpgcheck: true
+    enabled: true
+  when: ansible_os_family == "RedHat" and cm_version | int >= 6
+
+
+- name: update packages
+  command: yum update -y

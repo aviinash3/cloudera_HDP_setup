@@ -5,3 +5,5 @@
   service: 
     name: ntpd 
     state: restarted
+- name: reboot system
+  reboot:

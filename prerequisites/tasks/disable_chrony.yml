@@ -1,0 +1,6 @@
+---
+- name: stop and disable chronyd service
+  service:
+    name: chronyd
+    state: stopped
+    enabled: false
